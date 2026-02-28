@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Home from './pages/home/Home'
 import Navbar from './pages/navbar/Navbar'
 import './App.css'
@@ -8,12 +8,18 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen w-full flex flex-col bg-auto bg-[#111823]">
-        <Navbar />
-        <main className="flex-grow">
-          <Outlet /> {/* This is where AgentsPage, MapsPage, etc. will show up */}
-        </main>
-      </div>
+      <BrowserRouter>
+        <div className="min-h-screen w-full flex flex-col bg-auto bg-[#111823]">
+          <Routes>
+            <Route element={<Navbar/>}>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/about"/>
+            </Route>
+
+            <Route path="/login" />
+          </Routes>
+        </div>
+      </BrowserRouter>
     </>
   )
 }
