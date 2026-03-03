@@ -19,12 +19,13 @@ import { Link } from 'react-router-dom'
 
 
 interface LoginInput {
+  name: string
   email: string
   password: string
 }
 
 
-function Login() {
+function Signup() {
   const { 
     register, 
     handleSubmit, 
@@ -40,17 +41,27 @@ function Login() {
         <Card className='w-1/4 h-full mb-200 mt-100 px-12 pt-20 pb-60 self-center self bg-[#f0ece3] border-0'>
           <CardHeader>
             <CardTitle className="text-6xl font-black mb-5">
-              Login 
+              Signup 
             </CardTitle>
             <CardDescription className="text-4xl font-italic">
-              Enter your details to login
+              Sign up for an account
             </CardDescription>
           </CardHeader>
           <CardContent className="my-10">
           <form id="login-form" onSubmit={handleSubmit((data) => {
             console.log(data);
           })}>
-            <div className="flex flex-col gap-20">
+            <div className="flex flex-col gap-10">
+            <div className="grid gap-2">
+                <Label className="text-2xl" htmlFor="name">Name</Label>
+                <Input
+                  {...register("name", { required: true })}
+                  className="!h-16 !bg-[#d4d3d3]"
+                  id="name"
+                  type="name"
+                  placeholder="John Doe"
+                />
+              </div>
               <div className="grid gap-2">
                 <Label className="text-2xl" htmlFor="email">Email</Label>
                 <Input
@@ -64,12 +75,6 @@ function Login() {
               <div className="grid gap-2 mb-10">
                 <div className="flex items-center">
                   <Label className="text-2xl" htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
                 </div>
                 <Input 
                   {...register("password", { required: true })}
@@ -86,11 +91,11 @@ function Login() {
             type="submit" 
             className="w-full !h-16 !text-3xl"
             form="login-form">
-            Login
+            Signup
           </Button>
           <Button asChild>
-            <Link className="!text-white w-full !h-16 !text-3xl !bg-[#e66060]" to="/signup">
-              Signup
+            <Link className="!text-white w-full !h-16 !text-3xl !bg-[#e66060]" to="/login">
+              Back to Login
             </Link>
           </Button>
         </CardFooter>
@@ -101,4 +106,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup
